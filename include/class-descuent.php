@@ -1,6 +1,5 @@
 <?php 
 
-
 /**
  *
  * @author Bianqui Julian
@@ -39,26 +38,30 @@ class Descuent_Apply {
  		add_filter('woocommerce_get_price', array($this,'return_custom_price'), $product, 2);
 	}
 	function return_custom_price($price, $product) {    
-	    global $post, $woocommerce;
-	    // Array containing country codes
-	    $county = array('CH');
-	    // Get the post id 
+	    global $post, $woocommerce,$product;
+	     
 	    $post_id = $post->ID;
-	    // Amount to increase by
-	    $amount = 5 + $price;
-	    $descuent = get_post_meta($post_id, '_custom_product_number_field');
-	    if(!empty($descuent[0])){
+	    if ( $product->is_type( 'variable' ) ) {
 
-	    	$descuent_final = ($descuent[0] / 100) * $price;
+	    	return 10;
 
-	    	$desc = $price - $descuent_final; 
-
-	    	return $desc;
 	    }
 	    else{
+	    	$descuent = get_post_meta($post_id, '_custom_product_number_field');
+		    if(!empty($descuent[0])){
 
-	    	return $price;
+		    	$descuent_final = ($descuent[0] / 100) * $price;
+
+		    	$desc = $price - $descuent_final; 
+
+		    	return $desc;
+		    }
+		    else{
+
+		    	return $price;
+		    }
 	    }
+	    
 	    
 	} 
 	
