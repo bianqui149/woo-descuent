@@ -33,4 +33,10 @@ define( 'PLUGIN_NAME_VERSION', '0.0.1' );
 
 
 require_once plugin_dir_path( __FILE__ ) . '/admin/class-woo-descuent-admin.php';
+require_once plugin_dir_path( __FILE__ ) . '/admin/class-woo-update-price.php';
+require_once plugin_dir_path( __FILE__ ) . '/admin/class-woo-admin.php';
 require_once plugin_dir_path( __FILE__ ) . '/include/class-descuent.php';
+
+
+
+?>
